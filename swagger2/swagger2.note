@@ -1,0 +1,28 @@
+1、添加依赖
+    <!-- swagger -->
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>2.5.0</version>
+    </dependency>
+    <!-- swagger-ui -->
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>2.5.0</version>
+    </dependency>
+2、在启动类添加
+	@EnableSwagger2
+
+	添加方法
+	@Bean
+    public Docket swaggerSpringMvcPlugin() {
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
+    }
+3、使用注解
+	在控制器上使用注解
+		@Api(description = "用户接口")
+	在方法上使用注解 
+		@ApiOperation(value = "新增用户" ,  notes="新增注册")
+4、	访问
+	http://localhost:8080/swagger-ui.html 
